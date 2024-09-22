@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cofeeshop/Models/cofee.dart';
 import 'package:flutter/material.dart';
 
@@ -30,5 +32,22 @@ class CofeeShop {
       imagepath: 'lib/images/cold.png',
       ),
   ];
+
+  Link<Cofee> _userCart = [];
+
+  Link<Cofee> get coffeeShop => _shop;
+
+  Link<Cofee> get userCart => _userCart;
+
+  // add item to cart
+  void addItemToCart(Coffee coffee) {
+      _userCart.add(coffee);
+  }
+
+// remove item from cart
+  void removeItemFromCart(Coffee coffee){
+      userCart.remove(coffee);
+
+  }
 
 }
