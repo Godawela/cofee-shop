@@ -1,9 +1,8 @@
-import 'dart:io';
 
 import 'package:cofeeshop/Models/cofee.dart';
 import 'package:flutter/material.dart';
 
-class CofeeShop {
+class CofeeShop extends ChangeNotifier{
   //cofee for sale
 
   final List<Cofee> _shop = [
@@ -33,20 +32,22 @@ class CofeeShop {
       ),
   ];
 
-  Link<Cofee> _userCart = [];
+  List<Cofee> _userCart = [];
 
-  Link<Cofee> get coffeeShop => _shop;
+  List<Cofee> get coffeeShop => _shop;
 
-  Link<Cofee> get userCart => _userCart;
+  List<Cofee> get userCart => _userCart;
 
   // add item to cart
-  void addItemToCart(Coffee coffee) {
+  void addItemToCart(Cofee coffee) {
       _userCart.add(coffee);
+      notifyListeners();
   }
 
 // remove item from cart
-  void removeItemFromCart(Coffee coffee){
+  void removeItemFromCart(Cofee coffee){
       userCart.remove(coffee);
+      notifyListeners();
 
   }
 
