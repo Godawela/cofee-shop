@@ -2,16 +2,17 @@ import 'package:cofeeshop/Models/cofee.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class CofeeTile extends StatefulWidget {
+class CartTile extends StatefulWidget {
   final Cofee cofee;
   void Function()? onPressed;
-  CofeeTile({super.key, required this.cofee, required this.onPressed,  });
+  final Widget icon;
+  CartTile({super.key, required this.cofee, required this.onPressed, required this.icon});
 
   @override
-  State<CofeeTile> createState() => _CofeeTileState();
+  State<CartTile> createState() => _CofeeTileState();
 }
 
-class _CofeeTileState extends State<CofeeTile> {
+class _CofeeTileState extends State<CartTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,8 +29,9 @@ class _CofeeTileState extends State<CofeeTile> {
         leading: Image.asset(widget.cofee.imagepath),
         trailing: 
         IconButton(
-          icon: Icon(Icons.add), 
+          icon: widget.icon,
           onPressed: widget.onPressed,
+          
           ),
         
       ),

@@ -15,18 +15,47 @@ class _ShopPageState extends State<ShopPage> {
       // Add the cofee to the shopping cart
   void addToCart (Cofee cofee) {
     Provider.of<CofeeShop> (context, listen: false).addItemToCart(cofee);
+
+    //notification
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          "Item Added To Cart",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        // content: const Text(
+        //   "The item has been successfully added to your cart.",
+        //   style: TextStyle(fontSize: 16),
+        // ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close the dialog
+            },
+            child: const Text(
+              "Close",
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CofeeShop>(builder: (context, value, child)=>SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(25.0),
         child: Column(
           children: [
             const Text("How would you like your Coffee ?",
             style: TextStyle(fontSize: 20),),
-            const SizedBox(height: 25,),
+            const SizedBox(height: 20,),
 
             Expanded(child: ListView.builder(
               itemCount: value.coffeeShop.length,
@@ -35,7 +64,7 @@ class _ShopPageState extends State<ShopPage> {
 
               return CofeeTile(
                 cofee: eachCoffee,
-                onPressed: () => eachCoffee,
+                onPressed: () => addToCart(eachCoffee),
               );
              
             }
