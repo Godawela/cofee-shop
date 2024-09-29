@@ -19,6 +19,7 @@ class MyBottomNavBar extends StatelessWidget {
         tabBorderRadius: 24,
         tabActiveBorder: Border.all(color: Colors.white),
         tabs: const [
+  
         GButton(icon: Icons.home,
         text: ' Shop',
         ),
